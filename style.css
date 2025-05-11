@@ -1,0 +1,114 @@
+:root {
+  --dark-bg: #121212;
+  --darker-bg: #1e1e1e;
+  --card-bg: #252525;
+  --accent: #6d28d9;
+  --accent-hover: #5b21b6;
+  --text: #e2e2e2;
+  --text-muted: #a1a1a1;
+  --success: #10b981;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--text);
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: white;
+  border-bottom: 1px solid #333;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+h2 {
+  color: white;
+  margin-top: 40px;
+}
+
+.product {
+  background: var(--card-bg);
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left: 3px solid var(--accent);
+}
+
+.product:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.price {
+  font-weight: bold;
+  color: var(--accent);
+  font-size: 1.1em;
+}
+
+.add-to-cart {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.add-to-cart:hover {
+  background: var(--accent-hover);
+}
+
+.cart-section {
+  margin-top: 40px;
+  padding: 25px;
+  background: var(--darker-bg);
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.empty-cart {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.cart-total {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.cart-items {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+/* Scrollbar styling */
+.cart-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+  background: #333;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
