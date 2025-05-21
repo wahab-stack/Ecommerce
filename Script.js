@@ -1,64 +1,51 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const products = [
+    { id: 1, name: "Product 1", price: 29.99 },
+    { id: 2, name: "Product 2", price: 19.99 },
+    { id: 3, name: "Product 3", price: 39.99 },
+    // { id: 4, name: "Product 4", price: 59.99 },
+  ];
+  const cart = [];
 
-/*
-const cart = [];
+  const productList = document.getElementById("product-list");
+  const cartItems = document.getElementById("cart-items");
+  const emptyCartMessage = document.getElementById("empty-cart");
+  const cartTotalMessage = document.getElementById("cart-total");
+  const totalPriceDisplay = document.getElementById("total-price");
+  const checkOutBtn = document.getElementById("checkout-btn");
 
-document.querySelectorAll(".add-to-cart").forEach((button) => {
-  button.addEventListener("click", function () {
-    const productCard = this.parentElement;
-    const productName =
-      productCard.querySelector("span:first-child").textContent;
-    const productPrice = parseFloat(
-      productCard.querySelector(".price").textContent.replace("$", "")
-    );
-
-    // Add to cart array
-    cart.push({
-      name: productName,
-      price: productPrice,
-    });
-
-    // Update UI
-    updateCartUI();
-
-    // Visual feedback
-    const originalText = this.textContent;
-    this.textContent = "✓ Added";
-    this.style.background = "var(--success)";
-    setTimeout(() => {
-      this.textContent = originalText;
-      this.style.background = "var(--accent)";
-    }, 1500);
+  products.forEach((product) => {
+    const productDiv = document.createElement("div");
+    productDiv.classList.add("product");
+    productDiv.innerHTML = `
+    <span>${product.name} - $${product.price.toFixed(2)}</span>
+    <button data-id="${product.id}">Add To Cart</button>
+    `;
+    productList.appendChild(productDiv);
   });
-});
 
-function updateCartUI() {
-  const cartItemsEl = document.getElementById("cartItems");
-  const itemCountEl = document.getElementById("itemCount");
-  const totalPriceEl = document.getElementById("totalPrice");
+  productList.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+      const productId = parseInt(e.target.getAttribute("data-id"));
+      const product = products.find((p) => p.id === productId);
+      addToCart(product);
+    }
+  });
 
-  if (cart.length === 0) {
-    cartItemsEl.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
-  } else {
-    let cartHTML = "";
-    let total = 0;
-
-    cart.forEach((item) => {
-      cartHTML += `
-                        <div class="product" style="margin: 10px 0; padding: 15px;">
-                            <span>${item.name}</span>
-                            <span class="price">$${item.price.toFixed(2)}</span>
-                        </div>
-                    `;
-      total += item.price;
-    });
-
-    cartItemsEl.innerHTML = cartHTML;
+  function addToCart(product) {
+    cart.push(product);
+    renderCart();
   }
 
-  // Update totals
-  itemCountEl.textContent = cart.length;
-  totalPriceEl.textContent = `$${cart
-    .reduce((sum, item) => sum + item.price, 0)
-    .toFixed(2)}`;
-}
-*/
+  function renderCart() {
+    cartItems.innerText = "";
+    let totalPrice = 0;
+
+    if (cart.length > 0) {
+      emptyCartMessage.classList.add("hidden");
+      cartTotalMessage.classList.remove("hidden");
+    } else {
+      emptyCartMessage.classList.remove("hidden");
+    }
+  }
+});
